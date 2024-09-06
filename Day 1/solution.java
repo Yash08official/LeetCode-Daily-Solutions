@@ -1,4 +1,4 @@
-class solution {
+class Solution {
     public int compress(char[] chars) {
         int k = 0, n = chars.length;
         for (int i = 0, j = i + 1; i < n;) {
