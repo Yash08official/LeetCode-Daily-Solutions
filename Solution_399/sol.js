@@ -18,7 +18,7 @@ var calcEquation = function(equations, values, queries) {
     for (let i = 0; i < equations.length; ++i) {
         let e = equations[i];
         let a = e[0], b = e[1];
-        let pa = find(a), pb = find(b);
+        let pa = find(a, p, w), pb = find(b, p, w);
         if (pa === pb) {
             continue;
         }
@@ -30,17 +30,17 @@ var calcEquation = function(equations, values, queries) {
     let ans = new Array(m);
     for (let i = 0; i < m; ++i) {
         let c = queries[i][0], d = queries[i][1];
-        ans[i] = !p.has(c) || !p.has(d) || find(c) !== find(d)
+        ans[i] = !p.has(c) || !p.has(d) || find(c, p, w) !== find(d, p, w)
             ? -1.0
             : w.get(c) / w.get(d);
     }
     return ans;
 };
 
-function find(x) {
+function find(x, p, w) {
     if (p.get(x) !== x) {
         let origin = p.get(x);
-        p.set(x, find(p.get(x)));
+        p.set(x, find(p.get(x), p, w));
         w.set(x, w.get(x) * w.get(origin));
     }
     return p.get(x);
