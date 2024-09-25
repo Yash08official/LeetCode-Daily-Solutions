@@ -95,7 +95,7 @@ The selector function splits the array by whether each number is greater than 5.
 
 ### JavaScript
 
-```
+```js
 /**
  * @param {Function} fn
  * @return {Object}
